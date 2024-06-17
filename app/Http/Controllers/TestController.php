@@ -11,16 +11,13 @@ class TestController extends Controller
     public function test(){
         $http = new HttpClient();
 
-        $response = $http->client->request("GET" , "posts");
+        $response = $http->client->request("GET" , "/");
 
         $data = $response->getBody()->getContents();
 
         $posts = json_decode($data);
 
-        dd($posts);
-
-
-        return view('layout/app');
+        return view("layout/app");
 
 
 
