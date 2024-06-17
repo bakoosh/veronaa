@@ -16,9 +16,8 @@ class TestController extends Controller
         $data = $response->getBody()->getContents();
 
         $posts = json_decode($data);
-dd($data);
 
-        //return view("layout/app");
+        return view("layout/app");
 
 
 

@@ -1,4 +1,4 @@
-<?php
+    <?php
 
 return [
 
@@ -15,8 +15,8 @@ return [
     |
     */
 
-    'paths' => ['api/*', 'sanctum/csrf-cookie'],
-
+    'paths' => ['*', 'sanctum/csrf-cookie'], // production заменить на api/* (CORS) !!!
+        
     'allowed_methods' => ['*'],
 
     'allowed_origins' => ['*'],
