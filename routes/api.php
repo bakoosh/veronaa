@@ -20,3 +20,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 
 Route::get('api/test' , [\App\Http\Controllers\TestController::class, 'test']);
+Route::post('catalogs', '\App\Http\Controllers\Api\CatalogController@store');
+Route::post('products', '\App\Http\Controllers\Api\ProductController@store');
+Route::post('prices', '\App\Http\Controllers\Api\PricesByGroupController@store');
