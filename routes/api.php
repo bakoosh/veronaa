@@ -20,8 +20,10 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 
 Route::get('api/test' , [\App\Http\Controllers\TestController::class, 'test']);
+Route::get('catalogs', '\App\Http\Controllers\Api\CatalogController@index');
 Route::post('catalogs', '\App\Http\Controllers\Api\CatalogController@store');
+Route::get('products', '\App\Http\Controllers\Api\ProductController@index');
 Route::post('products', '\App\Http\Controllers\Api\ProductController@store');
 Route::post('prices', '\App\Http\Controllers\Api\PricesByGroupController@store');
 
-Route::get('api/products', '\App\Http\Controllers\Api\ProductController@index');
+
