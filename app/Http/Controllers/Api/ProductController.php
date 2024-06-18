@@ -13,14 +13,22 @@ class ProductController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $products = Product::all();
-        return response()->json([
-            'success' => true,
-            'products' => $products
-        ]);
+        $catalog_id = $request->query('catalog_id');
+        $perPage = $request->query('per_page', 10);
+
+        $query = Product::query();
+
+        if ($catalog_id) {
+            $query->where('catalog_id', $catalog_id);
+        }
+
+        $products = $query->paginate($perPage);
+
+        return response()->json($products);
     }
+
 
     /**
      * Show the form for creating a new resource.

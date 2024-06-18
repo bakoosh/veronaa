@@ -17,7 +17,6 @@ class TestController extends Controller
 
         $posts = json_decode($data);
 
-        return view("layout/app");
 
 
 
