@@ -32,12 +32,17 @@ class SmsService
         ];
 
         try {
-            $response = $this->client->get($url, ['query' => $params]);
+            $response = $this->client->get($url, [
+                'query' => $params,
+                'verify' => false,
+            ]);
             return json_decode($response->getBody(), true);
         } catch (\Exception $e) {
-            // Обработка ошибок
+
             return ['error' => $e->getMessage()];
         }
     }
+
+
 }
 

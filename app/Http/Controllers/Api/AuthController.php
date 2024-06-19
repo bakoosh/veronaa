@@ -32,7 +32,7 @@ class AuthController extends Controller
         $verificationCode = rand(100000, 999999);
         session(['verification_code' => $verificationCode]);
 
-        $response = $this->smsService->sendSms($request->phone, $verificationCode );
+        $response = $this->smsService->sendSms($request->phone, $verificationCode);
 
         return response()->json($response);
     }
