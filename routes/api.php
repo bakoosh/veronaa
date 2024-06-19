@@ -26,4 +26,7 @@ Route::get('products', '\App\Http\Controllers\Api\ProductController@index');
 Route::post('products', '\App\Http\Controllers\Api\ProductController@store');
 Route::post('prices', '\App\Http\Controllers\Api\PricesByGroupController@store');
 
+//auth
+Route::post('verify', '\App\Http\Controllers\Api\AuthController@SendVerificationCode');
+
 
