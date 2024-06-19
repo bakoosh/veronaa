@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "c91a26f55a874eb44816cbd8dba80ae4",
+    "content-hash": "fac7e2bc9f4a6ec637fcd6e70a4626ce",
     "packages": [
         {
             "name": "brick/math",
@@ -2511,6 +2511,55 @@
                 }
             ],
             "time": "2023-02-08T01:06:31+00:00"
+        },
+        {
+            "name": "nurdaulet/sms-kz",
+            "version": "1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/NurdauletArtykbaev/sms-kz.git",
+                "reference": "164cf1d9beac4008a900a9f3fe40d6f6abf6adc6"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/NurdauletArtykbaev/sms-kz/zipball/164cf1d9beac4008a900a9f3fe40d6f6abf6adc6",
+                "reference": "164cf1d9beac4008a900a9f3fe40d6f6abf6adc6",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^8.0"
+            },
+            "require-dev": {
+                "orchestra/testbench": "^8.11"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Nurdaulet\\KzSmsProvider\\SmsServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Nurdaulet\\KzSmsProvider\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "proprietary"
+            ],
+            "authors": [
+                {
+                    "name": "Nurdaulet"
+                }
+            ],
+            "description": "Sms provider kz",
+            "support": {
+                "issues": "https://github.com/NurdauletArtykbaev/sms-kz/issues",
+                "source": "https://github.com/NurdauletArtykbaev/sms-kz/tree/1.0.0"
+            },
+            "time": "2023-11-03T09:04:05+00:00"
         },
         {
             "name": "phpoption/phpoption",
