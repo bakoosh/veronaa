@@ -16,7 +16,7 @@ class ProductController extends Controller
     public function index(Request $request)
     {
         $catalog_id = $request->query('catalog_id');
-        $perPage = $request->query('per_page', 10);
+        $perPage = $request->query('per_page', 12);
 
         $query = Product::query();
 

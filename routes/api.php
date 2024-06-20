@@ -14,9 +14,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
+//Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+//    return $request->user();
+//});
 
 
 Route::get('api/test' , [\App\Http\Controllers\TestController::class, 'test']);
@@ -26,5 +26,8 @@ Route::get('products', '\App\Http\Controllers\Api\ProductController@index');
 Route::post('products', '\App\Http\Controllers\Api\ProductController@store');
 Route::post('prices', '\App\Http\Controllers\Api\PricesByGroupController@store');
 Route::post('verify' , [\App\Http\Controllers\Api\AuthController::class, 'SendVerificationCode']);
+Route::post('login' , [\App\Http\Controllers\Api\AuthController::class, 'verifyByCode']);
+
+
 
 
