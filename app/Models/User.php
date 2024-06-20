@@ -21,9 +21,6 @@ class User extends Authenticatable
         'phone',
     ];
 
-    //    protected $table='posts';
-    //    protected $guarded=false;
-
     /**
      * The attributes that should be hidden for serialization.
      *

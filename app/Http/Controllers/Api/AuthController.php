@@ -55,7 +55,8 @@ class AuthController extends Controller
             $user = User::updateOrCreate(['phone' => $request->phone]);
             return response()->json($user);
         } else {
-            return response()->json('bad');
+            return response()->json(['errors' => $validator->errors()], 400);
+
         }
 
 
