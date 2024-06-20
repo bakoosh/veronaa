@@ -22,12 +22,6 @@ class AuthController extends Controller
 
     public function SendVerificationCode(Request $request)
     {
-        $validator = Validator::make($request->all(), [
-            'phone' => 'required',
-        ]);
-        if ($validator->fails()) {
-            return response()->json(['error' => $validator->errors()], 422);
-        }
 
         $verificationCode = rand(100000, 999999);
         session(['verification_code' => $verificationCode]);
