@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Components\HttpClient;
 use App\Http\Controllers\Controller;
 use App\Models\PricesByGroup;
 use Illuminate\Http\Request;
@@ -25,7 +26,15 @@ class PricesByGroupController extends Controller
      */
     public function create()
     {
-        //
+        $client = new HttpClient();
+        $products = $client->client->get("https://back.almaray.kz/api/prices");
+        $data =json_decode($products->getBody()->getContents());
+
+
+        foreach ($data->prices as $price) {
+            $productArray = json_decode(json_encode($price), true);
+            PricesByGroup::updateOrCreate($productArray);
+        }
     }
 
     /**
