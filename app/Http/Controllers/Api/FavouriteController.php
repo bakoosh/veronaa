@@ -17,6 +17,7 @@ class FavouriteController extends Controller
         $response = $query->where('user_id', '=', $user_id)
             ->join('products', 'favourites.product_id', '=' , 'products.id')
             ->select('products.*')
+            ->orderBy('created_at', 'desc')
             ->get();
 
 
