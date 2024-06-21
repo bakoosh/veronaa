@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Components\HttpClient;
 use App\Http\Controllers\Controller;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Http;
 
 class ProductController extends Controller
 {
@@ -35,7 +37,16 @@ class ProductController extends Controller
      */
     public function create()
     {
-        //
+        $client = new HttpClient();
+        $products = $client->client->get("https://back.almaray.kz/api/products");
+        $data =json_decode($products->getBody()->getContents());
+
+
+        foreach ($data->data as $product) {
+            $productArray = json_decode(json_encode($product), true);
+            Product::updateOrCreate($productArray);
+        }
+
     }
 
     /**

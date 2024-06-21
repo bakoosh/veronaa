@@ -34,9 +34,13 @@ class AuthController extends Controller
 
         $response = $this->smsService->sendSms($request->phone, $verificationCode);
 
-        Cache::put('verification_code_' . $request->phone, $verificationCode, now()->addMinutes(10));
+        if($response) {
+            Cache::put('verification_code_' . $request->phone, $verificationCode, now()->addMinutes(10));
 
-        return response()->json(['verification_code' => $verificationCode]);
+            return response()->json(['verification_code' => $verificationCode]); // production поменять чтобы не отдовало $verificationCode
+        }
+
+
 
     }
 
@@ -58,9 +62,6 @@ class AuthController extends Controller
             return response()->json(['errors' => $validator->errors()], 400);
 
         }
-
-
-
     }
 
 }

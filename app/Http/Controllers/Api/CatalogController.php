@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Components\HttpClient;
 use App\Http\Controllers\Controller;
 use App\Models\Catalog;
 use Illuminate\Http\Request;
@@ -26,7 +27,17 @@ class CatalogController extends Controller
      */
     public function create()
     {
-        //
+        $client = new HttpClient();
+        $catalogs = $client->client->get("https://back.almaray.kz/api/catalogs");
+        $data =json_decode($catalogs->getBody()->getContents());
+
+
+        foreach ($data->catalogs as $catalog) {
+            $productArray = json_decode(json_encode($catalog), true);
+            Catalog::updateOrCreate($productArray);
+        }
+
+        return response()->json('success');
     }
 
     /**

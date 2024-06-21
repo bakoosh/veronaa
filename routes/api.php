@@ -25,8 +25,18 @@ Route::post('catalogs', '\App\Http\Controllers\Api\CatalogController@store');
 Route::get('products', '\App\Http\Controllers\Api\ProductController@index');
 Route::post('products', '\App\Http\Controllers\Api\ProductController@store');
 Route::post('prices', '\App\Http\Controllers\Api\PricesByGroupController@store');
+
 Route::post('verify' , [\App\Http\Controllers\Api\AuthController::class, 'SendVerificationCode']);
 Route::post('login' , [\App\Http\Controllers\Api\AuthController::class, 'verifyByCode']);
+
+Route::post('favourites', [\App\Http\Controllers\Api\FavouriteController::class, 'store']);
+Route::get('favourites', [\App\Http\Controllers\Api\FavouriteController::class, 'index']);
+
+
+//tests
+//Route::get('create', [\App\Http\Controllers\Api\ProductController::class, 'create']);
+//Route::get('createc', [\App\Http\Controllers\Api\CatalogController::class, 'create']);
+
 
 
 

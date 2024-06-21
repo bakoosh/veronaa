@@ -11,7 +11,7 @@ class HttpClient
     public function __construct()
     {
         $this->client = new \GuzzleHttp\Client([
-            "base_uri" => "https://smsc.kz/sys/send.php",
+            "base_uri" => "",
             'timeout' => 5.0,
             'verify' => false
         ]);
