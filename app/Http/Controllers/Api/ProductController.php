@@ -21,10 +21,10 @@ class ProductController extends Controller
         $perPage = $request->input('per_page', 100);
 
         //TODO
-        $query = Product::query()
-            ->join('prices_by_groups', 'products.p_group', '=', 'prices_by_groups.id')
-            ->select("prices_by_groups.*")
-            ->get();
+        $query = Product::query();
+//            ->join('prices_by_groups', 'products.p_group', '=', 'prices_by_groups.id')
+//            ->select("prices_by_groups.*")
+//            ->get();
 
         if ($catalog_id) {
             $query->where('catalog_id', $catalog_id);

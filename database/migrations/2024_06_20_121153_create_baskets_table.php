@@ -17,6 +17,7 @@ return new class extends Migration
             $table->foreign('product_id')->references('id')->on('products');
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');
+            $table->integer('quantity'); // update для того чтобы при нажатий добавить quantity делал update user_id=1 product_id=2 quantity=2 || user_id=1 product_id=4 quantity=5
             $table->timestamps();
         });
     }

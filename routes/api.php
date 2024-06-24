@@ -19,7 +19,6 @@ use Illuminate\Support\Facades\Route;
 //});
 
 
-//Route::get('api/test' , [\App\Http\Controllers\TestController::class, 'test']);
 Route::get('catalogs', '\App\Http\Controllers\Api\CatalogController@index');
 Route::post('catalogs', '\App\Http\Controllers\Api\CatalogController@store');
 Route::get('products', '\App\Http\Controllers\Api\ProductController@index');
