@@ -32,6 +32,9 @@ Route::post('login' , [\App\Http\Controllers\Api\AuthController::class, 'verifyB
 Route::post('favourites', [\App\Http\Controllers\Api\FavouriteController::class, 'store']);
 Route::get('favourites', [\App\Http\Controllers\Api\FavouriteController::class, 'index']);
 
+Route::post('basket', [\App\Http\Controllers\Api\BasketController::class, 'store']);
+Route::get('basket', [\App\Http\Controllers\Api\BasketController::class, 'index']);
+
 
 //DEV STAGE
 //Route::get('createProduct', [\App\Http\Controllers\Api\ProductController::class, 'create']);

@@ -26,6 +26,7 @@ class ProductController extends Controller
 //            ->select("prices_by_groups.*")
 //            ->get();
 
+
         if ($catalog_id) {
             $query->where('catalog_id', $catalog_id);
         }
@@ -44,13 +45,15 @@ class ProductController extends Controller
     {
         $client = new HttpClient();
         $products = $client->client->get("https://back.almaray.kz/api/products");
-        $data =json_decode($products->getBody()->getContents());
+        $data = json_decode($products->getBody()->getContents());
 
 
         foreach ($data->data as $product) {
             $productArray = json_decode(json_encode($product), true);
             Product::updateOrCreate($productArray);
         }
+
+        return response()->json($data);
 
     }
 

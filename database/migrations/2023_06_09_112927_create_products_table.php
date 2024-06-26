@@ -25,6 +25,8 @@ return new class extends Migration
             $table->foreign('catalog_id')->references('id')->on('catalogs');
             $table->boolean('new');
             $table->string('p_group', 25);
+//            $table->unsignedBigInteger('p_group');
+//            $table->foreign('p_group')->references('id')->on('prices_by_groups');
             $table->integer('rest')->default(0);
             $table->timestamps();
         });
