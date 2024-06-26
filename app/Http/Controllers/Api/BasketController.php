@@ -11,7 +11,17 @@ class BasketController extends Controller
 {
     public function index(Request $request)
     {
+        $user_id = $request->query('user_id');
+        $query = Basket::query();
 
+        $response = $query->where('user_id', '=', $user_id)
+            ->join('products', 'baskets.product_id', '=' , 'products.id')
+            ->select('products.*', 'quantity')
+            ->orderBy('created_at', 'desc')
+            ->get();
+
+
+        return response()->json($response);
     }
 
     public function store(Request $request)
