@@ -35,6 +35,8 @@ Route::get('favourites', [\App\Http\Controllers\Api\FavouriteController::class, 
 Route::post('basket', [\App\Http\Controllers\Api\BasketController::class, 'store']);
 Route::get('basket', [\App\Http\Controllers\Api\BasketController::class, 'index']);
 
+Route::post('getCityFromCoordinates' , [\App\Http\Controllers\Api\LocationController::class, 'getCityFromCoordinates']);
+
 
 //DEV STAGE
 //Route::get('createProduct', [\App\Http\Controllers\Api\ProductController::class, 'create']);
