@@ -34,11 +34,11 @@ Route::get('/products/{id}', [\App\Http\Controllers\Api\ProductController::class
 Route::post('verify' , [\App\Http\Controllers\Api\AuthController::class, 'SendVerificationCode']);
 Route::post('login' , [\App\Http\Controllers\Api\AuthController::class, 'verifyByCode']);
 
-Route::post('favourites', [\App\Http\Controllers\Api\FavouriteController::class, 'store'])->middleware('check.user_id');
-Route::get('favourites', [\App\Http\Controllers\Api\FavouriteController::class, 'index'])->middleware('check.user_id');
+Route::post('favourites', [\App\Http\Controllers\Api\FavouriteController::class, 'store']);
+Route::get('favourites', [\App\Http\Controllers\Api\FavouriteController::class, 'index']);
 
-Route::post('basket', [\App\Http\Controllers\Api\BasketController::class, 'store'])->middleware('check.user_id');;
-Route::get('basket', [\App\Http\Controllers\Api\BasketController::class, 'index'])->middleware('check.user_id');;
+Route::post('basket', [\App\Http\Controllers\Api\BasketController::class, 'store']);
+Route::get('basket', [\App\Http\Controllers\Api\BasketController::class, 'index']);
 
 Route::post('getCityFromCoordinates' , [\App\Http\Controllers\Api\LocationController::class, 'getCityFromCoordinates']);
 
