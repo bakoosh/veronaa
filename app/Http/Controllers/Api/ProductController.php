@@ -14,28 +14,46 @@ class ProductController extends Controller
 {
     /**
      * Display a listing of the resource.
+     *
+     *
      */
     public function index(Request $request)
     {
         $catalog_id = $request->query('catalog_id');
         $perPage = $request->input('per_page', 100);
+        $sort = $request->query('sort');
 
-        //TODO
-        $query = Product::query();
-//            ->join('prices_by_groups', 'products.p_group', '=', 'prices_by_groups.id')
-//            ->select("prices_by_groups.*")
-//            ->get();
-
+        $query = Product::query()
+            ->join('prices_by_groups', DB::raw('CAST(products.p_group AS bigint)'), '=', 'prices_by_groups.id')
+            ->join('catalogs', 'products.catalog_id', '=', 'catalogs.id')
+            ->select("prices_by_groups.*" , "products.*", 'catalogs.name as catalog_name');
 
         if ($catalog_id) {
             $query->where('catalog_id', $catalog_id);
         }
 
-        $products = $query->paginate($perPage);
+        if ($sort) {
+            switch ($sort) {
+                case 'popularity':
+                    $query->orderBy('products.popularity', 'desc');
+                    break;
+                case 'new':
+                    $query->orderBy('products.created_at', 'desc');
+                    break;
+                case 'price_asc':
+                    $query->orderBy('prices_by_groups.price', 'asc');
+                    break;
+                case 'price_desc':
+                    $query->orderBy('prices_by_groups.price', 'desc');
+                    break;
+            }
+        }
 
+        $products = $query->paginate($perPage);
 
         return response()->json($products);
     }
+
 
 
     /**
@@ -103,10 +121,35 @@ class ProductController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Product $product)
+
+    public function show($id)
     {
-        //
+        $query = Product::query();
+        $product = $query->select('products.*','products.name as product_name', 'prices_by_groups.*', 'prices_by_groups.name as prices_name')
+            ->join('prices_by_groups', DB::raw('CAST(products.p_group AS bigint)'), '=', 'prices_by_groups.id')
+            ->where('products.id', $id)
+            ->inRandomOrder()
+            ->limit(4)
+            ->get();
+
+        if (!$product) {
+            return response()->json(['error' => 'Product not found'], 404);
+        }
+
+        return response()->json($product);
     }
+
+//    public function getRandomProducts()
+//    {
+//        try {
+//            $query = Product::query();
+//            $products = $query->select('products.*', 'prices_by_groups.*')->join('prices_by_groups', DB::raw('CAST(products.p_group AS bigint)'), '=', 'prices_by_groups.id')->inRandomOrder()->limit(4)->get();
+//
+//            return response()->json($products);
+//        } catch (\Exception $e) {
+//            return response()->json(['error' => $e->getMessage()], 500);
+//        }
+//    }
 
     /**
      * Show the form for editing the specified resource.

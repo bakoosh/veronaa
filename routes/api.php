@@ -24,6 +24,11 @@ Route::post('catalogs', '\App\Http\Controllers\Api\CatalogController@store');
 Route::get('products', '\App\Http\Controllers\Api\ProductController@index');
 Route::post('products', '\App\Http\Controllers\Api\ProductController@store');
 Route::post('prices', '\App\Http\Controllers\Api\PricesByGroupController@store');
+Route::get('/products/random', [\App\Http\Controllers\Api\ProductController::class, 'getRandomProducts']);
+Route::get('/products/{id}', [\App\Http\Controllers\Api\ProductController::class, 'show']);
+
+
+
 
 
 Route::post('verify' , [\App\Http\Controllers\Api\AuthController::class, 'SendVerificationCode']);
